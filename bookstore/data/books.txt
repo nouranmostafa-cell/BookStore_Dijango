@@ -1,0 +1,3 @@
+1|The Great Gatsby|A story of wealth and love in the 1920s|/static/images/gatsby.jpg
+2|To Kill a Mockingbird|A powerful story of racial injustice|/static/images/mockingbird.jpeg
+3|1984|A dystopian novel about government surveillance|/static/images/1984.jpg

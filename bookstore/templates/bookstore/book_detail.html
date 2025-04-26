@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="book-detail-card card shadow">
+                <div class="card-header bg-primary text-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h1 class="h4 mb-0">
+                            <i class="bi bi-book me-2"></i>{{ book.title }}
+                        </h1>
+                        <a href="{% url 'book_list' %}" class="back-btn btn btn-light btn-sm">
+                            <i class="bi bi-arrow-left me-1"></i> Back to Catalog
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                {% if book.cover_image %}
+                                <img src="{{ book.cover_image.url }}" 
+                                     alt="{{ book.title }} cover" 
+                                     class="book-image img-fluid rounded shadow"/>
+                                {% else %}
+                                <div class="text-center text-muted p-5 bg-light rounded">
+                                    <i class="bi bi-image" style="font-size: 3rem;"></i>
+                                    <p class="mt-2">No cover image available</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-7">
+                            <div class="h-100 d-flex flex-column">
+                                <div class="mb-3">
+                                    <h4 class="text-primary">
+                                        <i class="bi bi-person me-2"></i>Author
+                                    </h4>
+                                    <p class="lead">
+                                        <a href="{% url 'author_detail' pk=book.author.pk %}">{{ book.author.name }}</a>
+                                    </p>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <h4 class="text-primary">
+                                        <i class="bi bi-card-text me-2"></i>Description
+                                    </h4>
+                                    <p class="description-text">{{ book.description }}</p>
+                                </div>
+                                
+                                <div class="row mt-auto">
+                                    <div class="col-md-6 mb-3">
+                                        <h4 class="text-primary">
+                                            <i class="bi bi-tag me-2"></i>Details
+                                        </h4>
+                                        <ul class="list-unstyled">
+                                            <li><strong>Price:</strong> ${{ book.price }}</li>
+                                            <li><strong>Pages:</strong> {{ book.page_count }}</li>
+                                            <li><strong>Age Group:</strong> 
+                                                <span class="badge bg-{% if book.age_group == 'under_8' %}primary{% elif book.age_group == '8_15' %}info{% else %}secondary{% endif %}">
+                                                    {{ book.get_age_group_display }}
+                                                </span>
+                                            </li>
+                                            {% if book.published_date %}
+                                            <li><strong>Published:</strong> {{ book.published_date|date:"F Y" }}</li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <h4 class="text-primary">
+                                            <i class="bi bi-info-circle me-2"></i>Additional Info
+                                        </h4>
+                                        <ul class="list-unstyled">
+                                            {% if book.isbn %}
+                                            <li><strong>ISBN:</strong> {{ book.isbn }}</li>
+                                            {% endif %}
+                                            <li><strong>Language:</strong> {{ book.language }}</li>
+                                            {% if book.added_to_website %}
+                                            <li><strong>Added:</strong> {{ book.added_to_website|date:"M d, Y" }}</li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

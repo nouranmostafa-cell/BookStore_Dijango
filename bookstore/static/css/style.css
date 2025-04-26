@@ -1,0 +1,43 @@
+.book-detail-card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.book-detail-card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.book-image {
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+    padding: 1rem;
+}
+.description-text {
+    line-height: 1.8;
+    text-align: justify;
+}
+.back-btn:hover {
+    transform: translateX(-3px);
+    transition: transform 0.2s ease;
+}
+
+.book-list-card {
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+.book-list-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.book-item {
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}
+.book-item:hover {
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--bs-primary);
+}
+.page-header {
+    border-bottom: 2px solid var(--bs-primary);
+}
